@@ -1,0 +1,64 @@
+object Form1: TForm1
+  Left = 811
+  Height = 240
+  Top = 248
+  Width = 440
+  Caption = 'Form1'
+  ClientHeight = 240
+  ClientWidth = 440
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.3.0.0'
+  object DBGrid1: TDBGrid
+    Left = 6
+    Height = 141
+    Top = 6
+    Width = 429
+    AutoEdit = False
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 0
+  end
+  object ComboBox1: TComboBox
+    Left = 19
+    Height = 25
+    Top = 160
+    Width = 160
+    ItemHeight = 0
+    OnCloseUp = ComboBox1CloseUp
+    TabOrder = 1
+    Text = 'ComboBox1'
+  end
+  object BufDataset1: TBufDataset
+    FieldDefs = <>
+    OnFilterRecord = BufDataset1FilterRecord
+    Left = 230
+    Top = 32
+    object BufDataset1status: TStringField
+      FieldKind = fkData
+      FieldName = 'status'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BufDataset1name: TStringField
+      FieldKind = fkData
+      FieldName = 'name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = BufDataset1
+    Left = 269
+    Top = 160
+  end
+end
