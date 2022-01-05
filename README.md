@@ -15,3 +15,12 @@ See in code directory:
 | --------------- |:----------------------------------------------------------------------------------------------------------------:|:------------------------------------------------:|
 | db_grid         | DBGrid using                                                                                                     | DBGrid                          |
 | thread_dbgrid   | Combination of Threads (used for analyze files in directory) and DB for storing data and presenting it by DBGrid | Threads, SQLite, DBGrid, BufDataset  |
+
+
+**Packages:**
+
+In section Packages you can find used packages in Lazarus
+
+| Package Name | Package Description                          | Links to package source or creator                                      |
+| :----------: | :------------------------------------------: | :---------------------------------------------------------------------: |
+| DCPCrypt     | Cryptography Algorithm Library               | https://github.com/StephenGenusa/DCPCrypt                               |
