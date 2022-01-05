@@ -1,0 +1,219 @@
+object Form1: TForm1
+  Left = 724
+  Height = 481
+  Top = 168
+  Width = 640
+  BorderStyle = bsNone
+  Caption = 'Analizer'
+  ClientHeight = 481
+  ClientWidth = 640
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '2.3.0.0'
+  object DirectoryEdit1: TDirectoryEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 10
+    Height = 23
+    Top = 10
+    Width = 620
+    Directory = '/home/pi/test'
+    ShowHidden = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 10
+    MaxLength = 0
+    TabOrder = 0
+    OnChange = DirectoryEdit1Change
+    Text = '/home/pi/test'
+  end
+  object Button1: TButton
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 25
+    Top = 446
+    Width = 90
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 10
+    Caption = 'Start'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    AnchorSideTop.Control = DirectoryEdit1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Edit1
+    Left = 419
+    Height = 17
+    Top = 43
+    Width = 121
+    Anchors = [akTop, akRight]
+    Caption = 'Block Size (bytes):'
+  end
+  object Edit1: TEdit
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = DirectoryEdit1
+    AnchorSideRight.Side = asrBottom
+    Left = 550
+    Height = 23
+    Top = 40
+    Width = 80
+    Alignment = taCenter
+    Anchors = [akTop, akRight]
+    BorderSpacing.Left = 10
+    TabOrder = 1
+    Text = '65536'
+  end
+  object Button2: TButton
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Button1
+    AnchorSideBottom.Side = asrBottom
+    Left = 540
+    Height = 25
+    Top = 446
+    Width = 90
+    Anchors = [akRight, akBottom]
+    Caption = 'Refresh'
+    Enabled = False
+    OnClick = Button2Click
+    TabOrder = 3
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Button1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Button2
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 110
+    Height = 26
+    Top = 445
+    Width = 420
+    Alignment = taCenter
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoSize = False
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 10
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 10
+    Caption = 'Please start the scan...'
+    Layout = tlCenter
+  end
+  object DBGrid1: TDBGrid
+    Left = 16
+    Height = 352
+    Top = 72
+    Width = 608
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource
+    TabOrder = 4
+  end
+  object SQLite3Connection: TSQLite3Connection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = '/home/pi/Analizer/analyzer.db'
+    KeepConnection = False
+    Transaction = SQLTransaction
+    AlwaysUseBigint = False
+    Left = 456
+    Top = 440
+  end
+  object SQLTransaction: TSQLTransaction
+    Active = True
+    Database = SQLite3Connection
+    Left = 416
+    Top = 440
+  end
+  object SQLQuery: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    Params = <>
+    Macros = <>
+    Left = 368
+    Top = 440
+  end
+  object SQLDBLibraryLoader1: TSQLDBLibraryLoader
+    Enabled = False
+    ConnectionType = 'SQLite3'
+    LibraryName = 'libsqlite3.so'
+    Left = 328
+    Top = 440
+  end
+  object DataSource: TDataSource
+    DataSet = BufDataset1
+    Left = 496
+    Top = 440
+  end
+  object BufDataset1: TBufDataset
+    FieldDefs = <>
+    Left = 280
+    Top = 440
+    object BufDataset1filepath: TStringField
+      DisplayLabel = 'File Path'
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'filepath'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 70
+    end
+    object BufDataset1pathseq: TStringField
+      DisplayLabel = 'Sequence'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'pathseq'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+    object BufDataset1start: TStringField
+      DisplayLabel = 'Start'
+      FieldKind = fkData
+      FieldName = 'start'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+    object BufDataset1end: TStringField
+      DisplayLabel = 'End'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'end'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+    object BufDataset1size: TStringField
+      DisplayLabel = 'Size'
+      FieldKind = fkData
+      FieldName = 'size'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
+  end
+end
